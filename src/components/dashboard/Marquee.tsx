@@ -38,8 +38,6 @@ export function Marquee() {
         <MarqueeGroup />
         <MarqueeGroup />
       </div>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-brand-lime to-transparent sm:w-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-brand-lime to-transparent sm:w-10" />
     </div>
   );
 }

@@ -191,11 +191,17 @@
     border: 2.5px solid var(--color-ink);
     background: #ffffff;
     padding: 0.6rem 0.75rem;
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--color-ink);
     transition:
       box-shadow 120ms ease,
       background-color 120ms ease;
+  }
+
+  @media (min-width: 640px) {
+    .brutal-input {
+      font-size: 0.95rem;
+    }
   }
 
   .brutal-input:focus {

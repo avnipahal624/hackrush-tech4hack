@@ -15,6 +15,7 @@ import { CustomCursor } from "@/components/dashboard/CustomCursor";
 import { usePersistentState } from "@/hooks/use-persistent-state";
 import { useClickSound } from "@/hooks/use-click-sound";
 import { ANNOUNCEMENTS } from "@/config/event";
+import { scrollToSection } from "@/lib/scroll";
 import { STORAGE_KEYS } from "@/lib/storage";
 import type { Registration, Submission, TrackId } from "@/types/event";
 
@@ -72,11 +73,7 @@ export default function Landing() {
   const openAnnouncement = (id: string) => {
     setExpandedAnnouncement(id);
     markRead(id);
-    window.setTimeout(() => {
-      document
-        .getElementById("announcements")
-        ?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 80);
+    window.setTimeout(() => scrollToSection("announcements"), 80);
   };
 
   const handleExpandAnnouncement = (id: string | null) => {
@@ -156,8 +153,9 @@ export default function Landing() {
 
         <div className="border-b-2 border-ink bg-ink px-3 py-1.5 text-center">
           <p className="font-mono text-[7px] font-bold uppercase leading-relaxed tracking-[0.1em] text-paper/80 sm:text-[9px] sm:tracking-[0.14em]">
-            Interactive demo <span className="text-brand-lime">·</span> Not the
-            official registration platform{" "}
+            Tech4Hack interactive demo{" "}
+            <span className="text-brand-lime">·</span> Not the official
+            registration platform{" "}
             <span className="hidden sm:inline">
               <span className="text-brand-lime">·</span> All demo data stays in
               your browser
@@ -181,11 +179,7 @@ export default function Landing() {
         <main>
           <HeroSection
             onOpenRegistration={() => openRegistration(null)}
-            onExplore={() =>
-              document
-                .getElementById("timeline")
-                ?.scrollIntoView({ behavior: "smooth", block: "start" })
-            }
+            onExplore={() => scrollToSection("timeline")}
           />
 
           <Marquee />

@@ -114,7 +114,7 @@ export function TrackExplorer({ onSelectTrack }: TrackExplorerProps) {
           />
 
           <h2 id="tracks-heading" className="sr-only">
-            Explore the HACKRUSH 2026 tracks
+            Explore the Tech4Hack HACKRUSH 2026 tracks
           </h2>
 
           <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">

@@ -12,7 +12,7 @@ function RouteLoading() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-paper p-6">
       <div className="border-[3px] border-ink bg-brand-lime px-4 py-3 font-mono text-xs font-bold uppercase tracking-[0.12em] shadow-[4px_4px_0_#171717]">
-        Loading HACKRUSH 2026…
+        Loading Tech4Hack…
       </div>
     </div>
   );

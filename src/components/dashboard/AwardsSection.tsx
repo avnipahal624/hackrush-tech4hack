@@ -99,7 +99,7 @@ export function AwardsSection() {
           />
 
           <h2 id="awards-heading" className="sr-only">
-            HACKRUSH 2026 awards and recognition
+            Tech4Hack HACKRUSH 2026 awards and recognition
           </h2>
 
           <div className="grid gap-4 lg:grid-cols-12 lg:items-stretch">

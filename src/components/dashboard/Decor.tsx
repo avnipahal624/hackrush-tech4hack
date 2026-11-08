@@ -165,7 +165,7 @@ function TerminalTyping() {
       <span className="sr-only">Terminal: build, innovate, solve, repeat.</span>
       <div aria-hidden="true">
         <p className="mb-1 text-[9px] font-bold tracking-[0.14em] text-ink/60">
-          HACKRUSH.SH
+          TECH4HACK.SH
         </p>
         {visible.map((line, index) => (
           <p key={`${line}-${index}`} className="whitespace-pre">

@@ -12,7 +12,8 @@ export const EVENT = {
   hackathon: "HACKRUSH",
   year: "2026",
   tagline: "BUILD. INNOVATE. SOLVE. REPEAT.",
-  subtitle: "The Flagship Hackathon of Tech4Hack, IGDTUW.",
+  subtitle:
+    "IGDTUW's flagship hackathon. Strange ideas, sharp teams, working demos.",
   timeZone: "Asia/Kolkata",
   timeZoneShort: "IST",
   finale: "22 November 2026",
@@ -347,9 +348,9 @@ export const AWARDS: Award[] = [
 export const ANNOUNCEMENTS: Announcement[] = [
   {
     id: "portal-open",
-    title: "The HACKRUSH 2026 dashboard is live",
+    title: "The Tech4Hack dashboard is live",
     body:
-      "Explore the tracks, read the schedule, and try the registration and submission demos. This is an interactive demonstration, not an official registration platform.",
+      "Explore the HACKRUSH 2026 tracks, read the schedule, and try the registration and submission demos. This is an interactive demonstration, not an official registration platform.",
     dateLabel: "Portal demo",
     sortDate: "2026-11-08T09:00:00+05:30",
     tag: "NOTICE",

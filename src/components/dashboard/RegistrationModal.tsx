@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import type { InputHTMLAttributes } from "react";
+import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -137,21 +138,21 @@ function buildDefaults(
   draft: RegistrationDraft | null,
   initialTrack: TrackId | null,
 ): RegistrationFormValues {
-  const rawSize = saved?.teamSize ?? draft?.teamSize ?? 3;
+  const rawSize = draft?.teamSize ?? saved?.teamSize ?? 3;
   const size = ([3, 4, 5].includes(Number(rawSize)) ? Number(rawSize) : 3) as TeamSize;
+  const draftTrack = draft?.trackId as TrackId | undefined;
 
   return {
-    teamName: saved?.teamName ?? draft?.teamName ?? "",
-    leaderName: saved?.leaderName ?? draft?.leaderName ?? "",
-    leaderEmail: saved?.leaderEmail ?? draft?.leaderEmail ?? "",
-    leaderPhone: saved?.leaderPhone ?? draft?.leaderPhone ?? "",
-    college: saved?.college ?? draft?.college ?? "",
+    teamName: draft?.teamName ?? saved?.teamName ?? "",
+    leaderName: draft?.leaderName ?? saved?.leaderName ?? "",
+    leaderEmail: draft?.leaderEmail ?? saved?.leaderEmail ?? "",
+    leaderPhone: draft?.leaderPhone ?? saved?.leaderPhone ?? "",
+    college: draft?.college ?? saved?.college ?? "",
     teamSize: size,
-    members: normalizeMembers(saved?.members ?? draft?.members, size),
+    members: normalizeMembers(draft?.members ?? saved?.members, size),
     trackId:
       initialTrack ??
-      saved?.trackId ??
-      (draft?.trackId as TrackId | undefined) ??
+      (draftTrack && draftTrack.length > 0 ? draftTrack : saved?.trackId) ??
       ("" as TrackId),
   };
 }
@@ -360,7 +361,7 @@ export function RegistrationModal({
 
   const onSubmit = (values: RegistrationFormValues) => {
     const registration: Registration = {
-      id: savedRegistration?.id ?? createDemoId("HR26"),
+      id: savedRegistration?.id ?? createDemoId("T4H26"),
       createdAt: savedRegistration?.createdAt ?? new Date().toISOString(),
       teamName: values.teamName.trim(),
       leaderName: values.leaderName.trim(),
@@ -388,8 +389,8 @@ export function RegistrationModal({
     if (!success) return;
     const track = getTrack(success.trackId);
     const lines = [
-      "HACKRUSH 2026 — DEMO REGISTRATION SUMMARY",
-      "==========================================",
+      "TECH4HACK — HACKRUSH 2026 DEMO REGISTRATION SUMMARY",
+      "==================================================",
       "",
       "DEMO REGISTRATION — NOT AN OFFICIAL HACKRUSH SUBMISSION",
       "This summary is generated locally in the browser. No data was sent to Tech4Hack.",
@@ -419,7 +420,7 @@ export function RegistrationModal({
       "official HACKRUSH registration is open.",
     ];
 
-    downloadTextFile(`HACKRUSH-2026-${success.id}.txt`, lines.join("\n"));
+    downloadTextFile(`Tech4Hack-HACKRUSH-2026-${success.id}.txt`, lines.join("\n"));
     toast.info("Demo registration summary downloaded.");
   };
 
@@ -453,11 +454,11 @@ export function RegistrationModal({
         className="w-[min(58rem,calc(100vw-1rem))] max-w-none gap-0 rounded-none border-[3px] border-ink bg-paper p-0 shadow-[8px_8px_0_#171717] sm:max-w-[58rem]"
       >
         <DialogTitle className="sr-only">
-          HACKRUSH 2026 demo registration portal
+          Tech4Hack HACKRUSH 2026 demo registration portal
         </DialogTitle>
         <DialogDescription className="sr-only">
-          A four-step demo team registration saved only in this browser. It is
-          not an official HACKRUSH submission.
+          A four-step Tech4Hack demo team registration saved only in this
+          browser. It is not an official HACKRUSH submission.
         </DialogDescription>
 
         <div
@@ -537,7 +538,9 @@ export function RegistrationModal({
 
           {success ? (
             <div className="p-3 sm:p-5">
-              <Confetti />
+              {typeof document !== "undefined"
+                ? createPortal(<Confetti />, document.body)
+                : null}
               <motion.div
                 initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
                 animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
@@ -1053,6 +1056,28 @@ export function RegistrationModal({
                     </BrutalButton>
                   )}
                 </div>
+
+                {savedRegistration ? (
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-2 border-ink bg-white px-2 py-1.5">
+                    <p className="font-mono text-[8px] font-bold uppercase leading-relaxed tracking-wide text-ink/55">
+                      Saved demo · {savedRegistration.teamName} ·{" "}
+                      {savedRegistration.id}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={clearRegistration}
+                      className={cn(
+                        "flex items-center gap-1 border-2 border-ink px-1.5 py-0.5 font-mono text-[8px] font-bold uppercase",
+                        clearArmed
+                          ? "bg-brand-pink"
+                          : "bg-white hover:bg-brand-pink",
+                      )}
+                    >
+                      <Trash2 className="h-2.5 w-2.5" />
+                      {clearArmed ? "Confirm clear" : "Clear saved demo"}
+                    </button>
+                  </div>
+                ) : null}
 
                 <p className="mt-3 border-t-2 border-ink/10 pt-2 font-mono text-[8px] uppercase leading-relaxed tracking-[0.04em] text-ink/40">
                   The source material lists conflicting registration dates. This

@@ -15,7 +15,7 @@ import {
   getNextMilestone,
   pad,
 } from "@/lib/date";
-import { colorBlock, colorChip } from "@/lib/theme";
+import { colorBlock } from "@/lib/theme";
 import { cn } from "@/lib/utils";
 import { ArrowDoodle, RetroComputer, Sparkle, Starburst } from "./Decor";
 import { BrutalButton } from "./BrutalButton";
@@ -138,13 +138,13 @@ export function HeroSection({
               <div className="relative border-[3px] border-ink bg-brand-pink px-3 pb-2 pt-1.5 sm:px-5">
                 <h1
                   id="hero-heading"
-                  className="font-display text-[clamp(3.05rem,9.4vw,7.7rem)] leading-[0.8] tracking-[-0.04em] text-ink"
+                  className="font-display text-[clamp(2.6rem,7.8vw,6.7rem)] leading-[0.8] tracking-[-0.045em] text-ink"
                 >
-                  HACKRUSH
+                  TECH4HACK
                 </h1>
                 <div className="mt-1.5 flex items-end justify-between gap-3 border-t-2 border-ink/20 pt-1.5">
                   <span className="font-mono text-[8px] font-bold uppercase tracking-[0.16em] text-ink/70 sm:text-[10px]">
-                    IGDTUW edition
+                    IGDTUW · HACKRUSH
                   </span>
                   <span className="border-2 border-ink bg-ink px-2 py-0.5 font-display text-[clamp(1.9rem,4.8vw,3.3rem)] leading-none text-paper">
                     2026

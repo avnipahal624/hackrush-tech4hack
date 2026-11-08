@@ -14,6 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { BrutalButton } from "@/components/dashboard/BrutalButton";
+import { scrollToSection } from "@/lib/scroll";
 import { cn } from "@/lib/utils";
 import type { Announcement, Registration } from "@/types/event";
 
@@ -53,16 +54,15 @@ export function Navbar({
   onMarkAllRead,
 }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const unreadCount = announcements.filter(
     (item) => !readIds.includes(item.id),
   ).length;
 
   const goTo = (id: string) => {
     setMobileOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    scrollToSection(id);
   };
 
   const openRegistration = () => {
@@ -87,9 +87,9 @@ export function Navbar({
             TECH4HACK<sup className="ml-0.5 text-[8px]">®</sup>
           </span>
           <span className="hidden font-mono text-[10px] font-bold leading-tight tracking-[0.08em] text-ink/70 sm:block">
-            @
+            HACKRUSH
             <br />
-            IGDTUW
+            @ IGDTUW
           </span>
         </a>
 
@@ -158,7 +158,7 @@ export function Navbar({
             )}
           </button>
 
-          <Popover>
+          <Popover open={notificationsOpen} onOpenChange={setNotificationsOpen}>
             <PopoverTrigger asChild>
               <button
                 type="button"
@@ -196,7 +196,10 @@ export function Navbar({
                     <button
                       key={item.id}
                       type="button"
-                      onClick={() => onOpenAnnouncement(item.id)}
+                      onClick={() => {
+                        setNotificationsOpen(false);
+                        onOpenAnnouncement(item.id);
+                      }}
                       className={cn(
                         "flex w-full items-start gap-2.5 px-3 py-3 text-left transition-colors hover:bg-brand-lime/40",
                         unread && "bg-brand-pink/15",
@@ -223,7 +226,10 @@ export function Navbar({
               </div>
               <button
                 type="button"
-                onClick={() => goTo("announcements")}
+                onClick={() => {
+                  setNotificationsOpen(false);
+                  goTo("announcements");
+                }}
                 className="w-full border-t-[3px] border-ink px-3 py-2.5 text-left font-heading text-[11px] font-bold uppercase tracking-wide hover:bg-brand-lime"
               >
                 View full bulletin →
@@ -231,7 +237,7 @@ export function Navbar({
             </PopoverContent>
           </Popover>
 
-          <Popover>
+          <Popover open={profileOpen} onOpenChange={setProfileOpen}>
             <PopoverTrigger asChild>
               <button
                 type="button"
@@ -274,7 +280,10 @@ export function Navbar({
                     <BrutalButton
                       variant="lime"
                       className="mt-3 w-full px-3 py-2.5"
-                      onClick={onOpenRegistration}
+                      onClick={() => {
+                        setProfileOpen(false);
+                        onOpenRegistration();
+                      }}
                     >
                       Edit saved registration
                     </BrutalButton>
@@ -288,7 +297,10 @@ export function Navbar({
                     <BrutalButton
                       variant="pink"
                       className="mt-3 w-full px-3 py-2.5"
-                      onClick={onOpenRegistration}
+                      onClick={() => {
+                        setProfileOpen(false);
+                        onOpenRegistration();
+                      }}
                     >
                       Start a demo team
                     </BrutalButton>

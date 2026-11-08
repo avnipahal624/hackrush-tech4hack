@@ -173,7 +173,7 @@ export function AnnouncementBoard({
           />
 
           <h2 id="announcements-heading" className="sr-only">
-            HACKRUSH 2026 announcements
+            Tech4Hack HACKRUSH 2026 announcements
           </h2>
 
           <div className="mb-3 flex items-start gap-2 border-2 border-ink bg-brand-yellow/45 p-2.5">

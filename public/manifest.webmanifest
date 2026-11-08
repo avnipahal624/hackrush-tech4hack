@@ -1,11 +1,11 @@
 {
-  "name": "freebuff.com application",
-  "short_name": "freebuff.com",
-  "description": "freebuff.com application",
+  "name": "Tech4Hack — HACKRUSH 2026",
+  "short_name": "Tech4Hack",
+  "description": "Tech4Hack is IGDTUW's flagship hackathon. Explore HACKRUSH 2026 tracks, schedule and awards, and try the interactive demo dashboard.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#FFF8ED",
+  "theme_color": "#FFF8ED",
   "icons": [
     {
       "src": "/logo.svg",

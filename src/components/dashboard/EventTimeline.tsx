@@ -54,7 +54,7 @@ export function EventTimeline() {
           />
 
           <h2 id="timeline-heading" className="sr-only">
-            HACKRUSH 2026 event timeline
+            Tech4Hack HACKRUSH 2026 event timeline
           </h2>
 
           <div className="grid gap-5 lg:grid-cols-12">

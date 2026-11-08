@@ -384,6 +384,9 @@ export function SubmissionModal({
     setSaved(submission);
     setView("success");
     toast.success("Demo submission saved locally. The file was not uploaded.");
+  }, () => {
+    toast.error("Check the highlighted fields before saving this demo.");
+    setView("form");
   });
 
   const clearSubmission = () => {
@@ -437,7 +440,7 @@ export function SubmissionModal({
         className="w-[min(62rem,calc(100vw-1rem))] max-w-none gap-0 rounded-none border-[3px] border-ink bg-paper p-0 shadow-[8px_8px_0_#171717] sm:max-w-[62rem]"
       >
         <DialogTitle className="sr-only">
-          HACKRUSH 2026 demo idea submission
+          Tech4Hack HACKRUSH 2026 demo idea submission
         </DialogTitle>
         <DialogDescription className="sr-only">
           A local demo form that saves text fields and file metadata only. No
